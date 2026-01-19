@@ -107,8 +107,5 @@ Bu backend projesi, "AI-First" ancak "İnsan Mimarisinde" bir yaklaşımla geli�
 ### 4. Zorluklar & Manuel Müdahaleler (AI'ın Yetersiz Kaldığı Yerler)
 AI araçları güçlüdür ancak kusursuz değildir. İşte manuel mühendislik gerektiren bazı durumlar:
 
-*   **Problem: Dil Kararlılığı (Language Stability)**: Girdi Türkçe olsa bile AI, "Benzer Sorular" üretirken İngilizceye dönme eğilimindeydi.
-    *   *Manuel Müdahale*: Dinamik prompt oluşturma yerine, `ai_service.py` içinde **sert kodlanmış (hard-coded)** talimatlar ("MUTLAKA TÜRKÇE", "MUST BE TURKISH") kullanarak AI'ın varsayılan davranışını ezdik.
-
 *   **Problem: Görsel Yönetimi**: AI, görselleri Base64 string olarak veritabanına kaydetmeyi önerdi.
     *   *Manuel Müdahale*: Bu yöntemin veritabanını şişireceğini öngörerek, Backend mimarisini değiştirdik. Görselleri diskte (`/uploads`) saklayıp veritabanında sadece URL tutan daha performanslı bir yapı kurduk.
