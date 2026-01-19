@@ -42,9 +42,15 @@ app.include_router(similarity.router)
 app.include_router(refinement.router)
 app.include_router(history.router)
 
-UPLOAD_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
-app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
+# Mount static files for uploaded images
+DATA_DIR = os.getenv("DATA_DIR")
+if DATA_DIR:
+    BASE_UPLOAD_DIR = os.path.join(DATA_DIR, "uploads")
+else:
+    BASE_UPLOAD_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "uploads")
+
+os.makedirs(BASE_UPLOAD_DIR, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=BASE_UPLOAD_DIR), name="uploads")
 
 
 

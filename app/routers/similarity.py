@@ -73,7 +73,14 @@ async def generate_similar(request: GenerateSimilarRequest, db: Session = Depend
                 image_data = base64.b64decode(request.image_base64)
                 
                 image_filename = f"{uuid.uuid4()}.png"
-                upload_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "uploads", "questions")
+                
+                # Check for DATA_DIR env (for Render disk)
+                data_dir = os.getenv("DATA_DIR")
+                if data_dir:
+                    upload_dir = os.path.join(data_dir, "uploads", "questions")
+                else:
+                    upload_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "uploads", "questions")
+                    
                 os.makedirs(upload_dir, exist_ok=True)
                 
                 image_path = os.path.join(upload_dir, image_filename)

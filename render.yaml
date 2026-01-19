@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: voltran-backend
+    runtime: python
+    region: frankfurt
+    plan: starter # Free plan doesn't support disks usually, Starter ($7/mo) does.
+    
+    # Monorepo configuration
+    rootDir: backend
+    
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: DATA_DIR
+        value: /var/lib/voltran
+      - key: MODEL_NAME
+        value: anthropic/claude-3.5-sonnet
+      - key: OPENROUTER_API_KEY
+        sync: false # Set this in Render Dashboard
+      - key: BACKEND_URL
+        sync: false # Set this to your Render Service URL (e.g. https://voltran.onrender.com)
+
+    # Persistent Disk configuration
+    # Essential for SQLite database and uploaded images
+    disk:
+      name: voltran_data
+      mountPath: /var/lib/voltran
+      sizeGB: 1
