@@ -1,6 +1,6 @@
-# Voltran Backend API
+# Backend API
 
-Voltran uygulamasının sunucu tarafı servisidir. **Python**, **FastAPI** ve **SQLAlchemy** kullanılarak geliştirilmiştir. PDF işleme, AI üretimi (OpenRouter üzerinden), oturum yönetimi (SQLite) ve görsel depolama işlemlerini yürütür.
+Soru uygulamasının sunucu tarafı servisidir. **Python**, **FastAPI** ve **SQLAlchemy** kullanılarak geliştirilmiştir. PDF işleme, AI üretimi (OpenRouter üzerinden), oturum yönetimi (SQLite) ve görsel depolama işlemlerini yürütür.
 
 ## 🛠 Teknoloji Yığını
 
